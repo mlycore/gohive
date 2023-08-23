@@ -5,10 +5,14 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"fmt"
+	"strconv"
+	"strings"
 
 	"github.com/apache/thrift/lib/go/thrift"
 	bgohive "github.com/beltran/gohive"
-	hiveserver2 "sqlflow.org/gohive/hiveserver2/gen-go/tcliservice"
+
+	// hiveserver2 "sqlflow.org/gohive/hiveserver2/gen-go/tcliservice"
+	hiveserver2 "github.com/beltran/gohive/hiveserver"
 )
 
 type drv struct{}
@@ -39,6 +43,26 @@ func (d drv) Open(dsn string) (driver.Conn, error) {
 		}
 		bgTransport.SetMaxLength(uint32(cfg.Batch))
 		transport = bgTransport
+	} else if cfg.Auth == "KERBEROS" {
+		configuration := bgohive.NewConnectConfiguration()
+		configuration.Service = "hive"
+		// Previously kinit should have done: kinit -kt ./secret.keytab hive/hs2.example.com@EXAMPLE.COM
+		// connection, errConn := bgohive.Connect("hs2.example.com", 10000, "KERBEROS", configuration)
+		host := strings.Split(cfg.Addr, ":")[0]
+		port := strings.Split(cfg.Addr, ":")[1]
+		p, _ := strconv.Atoi(port)
+		connection, errConn := bgohive.Connect(host, p, "KERBEROS", configuration)
+		if errConn != nil {
+			return nil, fmt.Errorf("create Kerberos failed: %v", err)
+		}
+		options := hiveOptions{PollIntervalSeconds: 5, BatchSize: int64(cfg.Batch)}
+		conn := &hiveConnection{
+			thrift:  connection.Client,
+			session: connection.SessionHandle,
+			options: options,
+			ctx:     context.Background(),
+		}
+
 	} else {
 		return nil, fmt.Errorf("unrecognized auth mechanism: %s", cfg.Auth)
 	}
