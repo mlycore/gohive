@@ -60,7 +60,7 @@ func (d drv) Open(dsn string) (driver.Conn, error) {
 			options: options,
 			ctx:     context.Background(),
 		}
-
+		return conn, nil
 	} else {
 		return nil, fmt.Errorf("unrecognized auth mechanism: %s", cfg.Auth)
 	}
