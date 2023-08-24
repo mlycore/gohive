@@ -4,10 +4,10 @@ go 1.18
 
 require (
 	github.com/apache/thrift v0.18.1
-	github.com/beltran/gohive v1.6.0
-	github.com/mlycore/bgohive v0.0.0-20230824012939-17186431c975
 	github.com/stretchr/testify v1.7.1
 )
+
+require github.com/mlycore/bgohive v0.0.0-20230824014643-d7d87a423bf7
 
 require (
 	github.com/beltran/gosasl v0.0.0-20220331024818-65cde6a69a35 // indirect
