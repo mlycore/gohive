@@ -3,7 +3,7 @@ module github.com/mlycore/gohive
 go 1.18
 
 require (
-	github.com/apache/thrift v0.18.1
+	github.com/apache/thrift v0.14.1
 	github.com/stretchr/testify v1.7.1
 )
 
