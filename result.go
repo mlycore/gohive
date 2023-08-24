@@ -3,7 +3,6 @@ package gohive
 import (
 	"database/sql/driver"
 
-	// hiveserver2 "github.com/beltran/gohive/hiveserver"
 	hiveserver2 "github.com/mlycore/bgohive/hiveserver"
 )
 

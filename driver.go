@@ -9,10 +9,8 @@ import (
 	"strings"
 
 	"github.com/apache/thrift/lib/go/thrift"
-	// bgohive "github.com/beltran/gohive"
 	bgohive "github.com/mlycore/bgohive"
 
-	// hiveserver2 "github.com/beltran/gohive/hiveserver"
 	hiveserver2 "github.com/mlycore/bgohive/hiveserver"
 )
 

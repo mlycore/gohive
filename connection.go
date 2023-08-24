@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"strings"
 
-	// hiveserver2 "github.com/beltran/gohive/hiveserver"
 	hiveserver2 "github.com/mlycore/bgohive/hiveserver"
 )
 
