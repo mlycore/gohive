@@ -10,7 +10,9 @@ import (
 
 	"github.com/apache/thrift/lib/go/thrift"
 	bgohive "github.com/beltran/gohive"
-	hiveserver2 "github.com/beltran/gohive/hiveserver"
+
+	// hiveserver2 "github.com/beltran/gohive/hiveserver"
+	hiveserver2 "github.com/mlycore/bgohive/hiveserver"
 )
 
 type drv struct{}

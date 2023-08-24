@@ -9,7 +9,8 @@ import (
 	"reflect"
 	"time"
 
-	hiveserver2 "github.com/beltran/gohive/hiveserver"
+	// hiveserver2 "github.com/beltran/gohive/hiveserver"
+	hiveserver2 "github.com/mlycore/bgohive/hiveserver"
 )
 
 // rowSet implements the interface database/sql/driver.Rows.
